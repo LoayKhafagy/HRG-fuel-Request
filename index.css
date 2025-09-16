@@ -1,0 +1,420 @@
+:root {
+  --primary-color: #003366; /* Deep Blue */
+  --secondary-color: #005A9C;
+  --accent-color: #D4AF37; /* Gold/Yellow Accent */
+  --background-color: #f0f4f8; /* Light Grey-Blue */
+  --text-color: #333;
+  --card-bg-color: #ffffff;
+  --border-color: #e0e0e0;
+  --success-color: #28a745;
+  --danger-color: #dc3545;
+  --warning-color: #ffc107;
+  --pending-color: #6c757d;
+  --font-family: 'Cairo', sans-serif;
+  --border-radius: 8px;
+  --shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  --shadow-hover: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+main {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+/* --- Header --- */
+.app-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+}
+
+.app-header h1 {
+  font-weight: 700;
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+  color: var(--accent-color);
+}
+
+.app-header h2 {
+  font-weight: 600;
+  font-size: 1.5rem;
+  opacity: 0.9;
+}
+
+.app-header h3 {
+  font-weight: 400;
+  font-size: 1.2rem;
+  opacity: 0.8;
+}
+
+/* --- General Components & Cards --- */
+.card {
+  background-color: var(--card-bg-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-hover);
+}
+
+.view-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.view-header {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--accent-color);
+  margin-bottom: 1rem;
+}
+
+.empty-state-message {
+  text-align: center;
+  padding: 2rem;
+  color: #777;
+}
+
+/* --- Buttons --- */
+button {
+  font-family: var(--font-family);
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.btn-submit {
+  background-color: var(--accent-color);
+  color: var(--primary-color);
+  width: 100%;
+  font-size: 1.1rem;
+}
+
+.btn-submit:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-clear-completed {
+  background-color: var(--danger-color);
+  color: white;
+}
+
+.btn-message {
+  background-color: var(--secondary-color);
+  color: white;
+  position: relative;
+}
+
+.btn-cancel {
+  background-color: var(--danger-color);
+  color: white;
+}
+
+.status-actions button {
+  background-color: #f0f0f0;
+  color: var(--text-color);
+  border: 1px solid #ccc;
+}
+.status-actions button:hover:not(:disabled) {
+  background-color: #e0e0e0;
+}
+
+
+/* --- Forms --- */
+.form-container.card {
+  padding: 2rem;
+}
+
+.request-form .form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  font-family: var(--font-family);
+  padding: 0.8rem;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(0, 86, 156, 0.2);
+}
+
+.error-message {
+  color: var(--danger-color);
+  font-size: 0.85rem;
+  padding-top: 4px;
+}
+
+/* --- Request Card --- */
+.request-card {
+  border-left: 5px solid var(--pending-color);
+}
+.request-card.status-confirmed { border-left-color: var(--accent-color); }
+.request-card.status-completed { border-left-color: var(--success-color); }
+.request-card.status-cancelled { border-left-color: var(--danger-color); }
+
+.card-header, .card-body, .card-footer {
+  padding: 1rem 1.5rem;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f9f9f9;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.card-header h3 {
+  color: var(--primary-color);
+}
+
+.status-badge {
+  padding: 0.3rem 0.8rem;
+  border-radius: 15px;
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: white;
+  text-transform: uppercase;
+  background-color: var(--pending-color);
+}
+.status-badge.status-confirmed { background-color: var(--accent-color); }
+.status-badge.status-completed { background-color: var(--success-color); }
+.status-badge.status-cancelled { background-color: var(--danger-color); }
+
+.card-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.info-item {
+  color: #555;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f9f9f9;
+  border-top: 1px solid var(--border-color);
+}
+
+.status-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* --- Chat Interface --- */
+.chat-interface {
+  padding: 1rem;
+  background-color: #fdfdfd;
+  border-top: 1px solid var(--border-color);
+}
+
+.messages-list {
+  max-height: 250px;
+  overflow-y: auto;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  background: #f0f4f8;
+  border-radius: var(--border-radius);
+}
+
+.message {
+  margin-bottom: 0.75rem;
+  padding: 0.6rem 1rem;
+  border-radius: 15px;
+  max-width: 80%;
+  word-wrap: break-word;
+}
+
+.message-text {
+  font-size: 0.95rem;
+}
+.message-timestamp {
+  font-size: 0.75rem;
+  color: #666;
+  text-align: left;
+  margin-top: 4px;
+}
+
+.message-Client {
+  background-color: #e1f5fe;
+  color: #01579b;
+  margin-right: auto;
+  border-bottom-left-radius: 3px;
+}
+.message-Client .message-timestamp { color: #01579b; }
+
+.message-Company {
+  background-color: #e8f5e9;
+  color: #1b5e20;
+  margin-left: auto;
+  border-bottom-right-radius: 3px;
+}
+.message-Company .message-timestamp { color: #1b5e20; }
+
+
+.no-messages {
+  text-align: center;
+  color: #888;
+  padding: 1rem;
+}
+
+.chat-input-form {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.chat-input-form input {
+  flex-grow: 1;
+}
+.chat-input-form button {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+/* --- Notifications --- */
+@keyframes pulse {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.7); }
+  70% { transform: scale(1.1); box-shadow: 0 0 0 10px rgba(220, 53, 69, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(220, 53, 69, 0); }
+}
+.notification-dot {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 12px;
+  height: 12px;
+  background-color: var(--danger-color);
+  border-radius: 50%;
+  border: 2px solid white;
+  animation: pulse 1.5s infinite;
+}
+
+/* --- Company Dashboard Specifics --- */
+.company-dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* --- Modal --- */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  width: 90%;
+  max-width: 450px;
+  text-align: center;
+}
+
+.modal-content h3 {
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+}
+
+.modal-content p {
+  margin-bottom: 2rem;
+  color: #555;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.modal-actions .btn-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+.modal-actions .btn-danger {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+/* --- Success Toast --- */
+.success-toast {
+  background-color: var(--success-color);
+  color: white;
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  text-align: center;
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translate(-50%, -150%);
+  z-index: 1001;
+  transition: transform 0.4s ease-in-out;
+  box-shadow: var(--shadow);
+}
+
+.success-toast.visible {
+  transform: translate(-50%, 0);
+}
